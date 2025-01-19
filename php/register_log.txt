@@ -1,0 +1,17 @@
+[2025-01-18 23:23:43] Iniciando processo de registro
+[2025-01-18 23:23:43] Dados recebidos: {"name":"Oseas","email":"oseassalim@gmail.com","password":"382913","confirmPassword":"382913"}
+[2025-01-18 23:23:43] Dados processados - Nome: Oseas, Email: oseassalim@gmail.com
+[2025-01-18 23:23:43] Senha hash gerada com sucesso
+[2025-01-18 23:23:43] Usuário inserido com sucesso. ID: 1
+[2025-01-18 23:23:43] Registro concluído com sucesso
+[2025-01-18 23:53:08] Iniciando processo de registro
+[2025-01-18 23:53:08] Dados recebidos: {"name":"Oseas","email":"oseassalim@gmail.com","password":"382913","confirmPassword":"382913"}
+[2025-01-18 23:53:08] Dados processados - Nome: Oseas, Email: oseassalim@gmail.com
+[2025-01-18 23:53:08] Senha hash gerada com sucesso
+[2025-01-18 23:53:27] ERRO: MySQL server has gone away
+[2025-01-18 23:54:05] Iniciando processo de registro
+[2025-01-18 23:54:05] Dados recebidos: {"name":"Oseas","email":"oseassalim@gmail.com","password":"382913","confirmPassword":"382913"}
+[2025-01-18 23:54:05] Dados processados - Nome: Oseas, Email: oseassalim@gmail.com
+[2025-01-18 23:54:05] Senha hash gerada com sucesso
+[2025-01-18 23:54:05] Usuário inserido com sucesso. ID: 2
+[2025-01-18 23:54:05] Registro concluído com sucesso

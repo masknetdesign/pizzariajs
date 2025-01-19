@@ -1,0 +1,252 @@
+/* Header Styles */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    color: #e31837;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Navigation */
+.main-nav {
+    flex: 1;
+    margin-left: 40px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.nav-list a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-list a i {
+    font-size: 1.2rem;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+    color: #e31837;
+    background-color: rgba(227, 24, 55, 0.1);
+}
+
+/* Cart Link */
+.cart-link {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #e31837;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* Login Item */
+.login-item a {
+    background-color: #e31837;
+    color: white !important;
+}
+
+.login-item a:hover {
+    background-color: #c41230 !important;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #333;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+.menu-toggle.active .hamburger {
+    background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .header-container {
+        height: 60px;
+        padding: 0 16px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: white;
+        margin: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .main-nav.active {
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 0;
+    }
+
+    .nav-list li {
+        width: 100%;
+    }
+
+    .nav-list a {
+        padding: 16px 20px;
+        border-radius: 0;
+        justify-content: flex-start;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-list li:last-child a {
+        border-bottom: none;
+    }
+
+    .cart-count {
+        position: static;
+        margin-left: 8px;
+    }
+
+    .login-item a {
+        background-color: transparent !important;
+        color: #333 !important;
+    }
+
+    .login-item a:hover {
+        color: #e31837 !important;
+        background-color: rgba(227, 24, 55, 0.1) !important;
+    }
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 375px) {
+    body {
+        padding-top: 55px;
+    }
+
+    .header-container {
+        height: 55px;
+        padding: 0 12px;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .main-nav {
+        top: 55px;
+    }
+
+    .nav-list a {
+        font-size: 0.9rem;
+        padding: 14px 16px;
+    }
+
+    .nav-list a i {
+        font-size: 1.1rem;
+        min-width: 24px;
+    }
+
+    .cart-count {
+        font-size: 0.7rem;
+        padding: 1px 5px;
+        min-width: 16px;
+    }
+}

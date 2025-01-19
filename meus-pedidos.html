@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - PizzariaJS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/meus-pedidos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <main-header></main-header>
+
+    <main class="orders-container">
+        <h2>Meus Pedidos</h2>
+        
+        <div id="orders-list">
+            <!-- Orders will be loaded dynamically -->
+        </div>
+
+        <div id="no-orders-message" style="display: none;">
+            <p>Você ainda não fez nenhum pedido</p>
+            <button class="view-menu-btn" onclick="window.location.href='cardapio.html'">
+                Ver Cardápio
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PizzariaJS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="components/header.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/meus-pedidos.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+.orders-container {
+    max-width: 1200px;
+    margin: 90px auto 30px;
+    padding: 0 20px;
+}
+
+.orders-container h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.order-number {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.order-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-preparing {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-delivering {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-completed {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.order-items {
+    margin-bottom: 15px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-quantity {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.item-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.item-price {
+    color: #666;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #eee;
+}
+
+.total-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.total-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e31837;
+}
+
+#no-orders-message {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#no-orders-message p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.view-menu-btn {
+    background-color: #e31837;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-menu-btn:hover {
+    background-color: #c41230;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .orders-container {
+        margin: 80px auto 20px;
+        padding: 0 15px;
+    }
+
+    .orders-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .order-card {
+        padding: 15px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .order-number {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .orders-container {
+        margin: 70px auto 15px;
+        padding: 0 10px;
+    }
+
+    .orders-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .order-card {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .order-status {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+
+    .item-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .item-quantity {
+        font-size: 0.8rem;
+        padding: 3px 6px;
+    }
+
+    .item-name {
+        font-size: 0.9rem;
+    }
+
+    .item-price {
+        font-size: 0.9rem;
+    }
+
+    .total-value {
+        font-size: 1.1rem;
+    }
+
+    .view-menu-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}

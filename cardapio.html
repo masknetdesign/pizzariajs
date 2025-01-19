@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - PizzariaJS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cardapio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <app-header></app-header>
+
+    <main class="menu-container">
+        <!-- Barra de busca -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar produtos...">
+            <i class="fas fa-search"></i>
+        </div>
+
+        <!-- Categorias -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all">
+                <i class="fas fa-th-large"></i>
+                Todos
+            </button>
+            <button class="category-btn" data-category="pizzas_tradicionais">
+                <i class="fas fa-pizza-slice"></i>
+                Pizzas Tradicionais
+            </button>
+            <button class="category-btn" data-category="pizzas_especiais">
+                <i class="fas fa-star"></i>
+                Pizzas Especiais
+            </button>
+            <button class="category-btn" data-category="bebidas">
+                <i class="fas fa-glass-cheers"></i>
+                Bebidas
+            </button>
+            <button class="category-btn" data-category="sobremesas">
+                <i class="fas fa-ice-cream"></i>
+                Sobremesas
+            </button>
+        </div>
+
+        <!-- Grid de produtos -->
+        <div id="products-grid"></div>
+    </main>
+
+    <script src="js/components/header.js"></script>
+    <script src="js/cardapio.js"></script>
+</body>
+</html>

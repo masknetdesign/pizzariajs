@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PizzariaJS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <main class="login-container">
+        <div class="logo">
+            <h1>PizzariaJS</h1>
+        </div>
+        
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <div class="spinner"></div>
+                    <span>Entrar</span>
+                </button>
+            </form>
+            <div class="form-links">
+                <a href="#" onclick="showResetPasswordForm()" class="forgot-password">Esqueci minha senha</a>
+                <p class="register-link">Não tem uma conta? <a href="#" onclick="showRegisterForm()">Cadastre-se</a></p>
+            </div>
+        </div>
+
+        <div class="register-box" style="display: none;">
+            <h2>Cadastro</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="regName">Nome:</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Senha:</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <div class="spinner"></div>
+                    <span>Cadastrar</span>
+                </button>
+            </form>
+            <p class="login-link">Já tem uma conta? <a href="#" onclick="showLoginForm()">Faça login</a></p>
+        </div>
+
+        <div class="reset-password-box" style="display: none;">
+            <h2>Redefinir Senha</h2>
+            <form id="resetPasswordForm" onsubmit="handleResetPassword(event)">
+                <div class="form-group">
+                    <label for="resetEmail">Email:</label>
+                    <input type="email" id="resetEmail" name="email" required>
+                </div>
+                <button type="submit" class="reset-btn">Enviar Link de Redefinição</button>
+            </form>
+            <p class="login-link">Lembrou sua senha? <a href="#" onclick="showLoginForm()">Faça login</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PizzariaJS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

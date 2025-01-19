@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #c41230;
+    --secondary-color: #333;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --text-light: #666;
+    --border-color: #ddd;
+    --white: #fff;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --error-color: #dc3545;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Sweetalert2 Customização */
+.swal2-popup {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.swal2-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+.swal2-html-container {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.swal2-confirm {
+    background-color: var(--primary-color) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.swal2-cancel {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Utilitários */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #a30f28;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #e5e5e5;
+    transform: translateY(-2px);
+}

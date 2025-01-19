@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha - PizzariaJS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>PizzariaJS</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cardapio.html">Cardápio</a></li>
+                <li><a href="carrinho.html">Carrinho <span id="cart-count">0</span></a></li>
+                <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+                <li><a href="login.html" id="loginBtn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="login-container">
+        <div class="reset-password-box">
+            <h2>Nova Senha</h2>
+            <form id="newPasswordForm" onsubmit="handleNewPassword(event)">
+                <div class="form-group">
+                    <label for="newPassword">Nova Senha:</label>
+                    <input type="password" id="newPassword" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword">Confirmar Nova Senha:</label>
+                    <input type="password" id="confirmNewPassword" name="confirmPassword" required minlength="6">
+                </div>
+                <button type="submit" class="reset-btn">Alterar Senha</button>
+            </form>
+            <p class="login-link">Já definiu sua senha? <a href="login.html">Faça login</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PizzariaJS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Função para validar e processar a nova senha
+        async function handleNewPassword(event) {
+            event.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmNewPassword').value;
+            
+            // Validar se as senhas coincidem
+            if (newPassword !== confirmPassword) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            // Validar comprimento mínimo
+            if (newPassword.length < 6) {
+                alert('A senha deve ter pelo menos 6 caracteres!');
+                return;
+            }
+            
+            try {
+                // Em um ambiente real, isso seria uma chamada API para atualizar a senha
+                // Por enquanto, apenas simulamos o sucesso
+                alert('Senha alterada com sucesso!');
+                
+                // Redirecionar para a página de login
+                window.location.href = 'login.html';
+                
+            } catch (error) {
+                alert('Erro ao alterar a senha. Tente novamente.');
+            }
+        }
+    </script>
+</body>
+</html>

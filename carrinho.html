@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Pizzaria JS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/carrinho.css">
+</head>
+<body>
+    <app-header></app-header>
+
+    <main class="cart-container">
+        <h2>Meu Carrinho</h2>
+        
+        <div id="cart-items">
+            <!-- Items will be loaded dynamically -->
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-item">
+                <span>Taxa de entrega:</span>
+                <span id="delivery-fee">R$ 5,00</span>
+            </div>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <span id="total">R$ 0,00</span>
+            </div>
+            
+            <div class="cart-buttons">
+                <button type="button" id="checkout-btn" class="checkout-btn">
+                    <i class="fas fa-check"></i>
+                    Finalizar Pedido
+                </button>
+                
+                <a href="cardapio.html" class="continue-shopping-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Continuar Comprando
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pizzaria JS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/components/header.js"></script>
+    <script src="js/carrinho.js"></script>
+</body>
+</html>
