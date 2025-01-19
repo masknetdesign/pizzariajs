@@ -169,6 +169,36 @@
     background: #a30f28;
 }
 
+/* Popup de detalhes do produto */
+.product-details-popup {
+    max-width: 500px !important;
+}
+
+.product-details {
+    padding: 1rem;
+}
+
+.product-details img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-details .description {
+    color: #666;
+    margin: 1rem 0;
+    line-height: 1.5;
+}
+
+.product-details .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #c41230;
+    margin: 1rem 0;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .menu-container {

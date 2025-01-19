@@ -54,6 +54,11 @@ function addToCart(productId) {
     }
 }
 
+// Função para abrir detalhes do produto
+function openProductDetails(productId) {
+    window.location.href = `detalhes.html?id=${productId}`;
+}
+
 // Função para renderizar produtos
 function renderProducts(products) {
     console.log('Renderizando produtos:', products);
@@ -96,7 +101,7 @@ function renderProducts(products) {
         }
         
         return `
-            <div class="product-card" data-category="${safeProduct.category}">
+            <div class="product-card" data-category="${safeProduct.category}" onclick="openProductDetails(${safeProduct.id})">
                 <img src="${imageUrl}" 
                      alt="${safeProduct.name}" 
                      onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}';">
@@ -106,7 +111,7 @@ function renderProducts(products) {
                     <div class="price">${formatPrice(safeProduct.price)}</div>
                     <button class="add-to-cart-btn" 
                             data-product-id="${safeProduct.id}" 
-                            onclick="addToCart(${safeProduct.id})">
+                            onclick="event.stopPropagation(); addToCart(${safeProduct.id})">
                         <i class="fas fa-shopping-cart"></i>
                         Adicionar ao Carrinho
                     </button>

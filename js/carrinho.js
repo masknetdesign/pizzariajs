@@ -1,5 +1,5 @@
 const DELIVERY_FEE = 5.00;
-const DEFAULT_IMAGE = 'images/default-product.jpg';
+const DEFAULT_IMAGE = 'images/default.jpg';
 
 // Função para formatar preço
 function formatPrice(price) {
@@ -102,7 +102,8 @@ function renderCart() {
         return `
             <div class="cart-item" data-id="${item.id}">
                 <div class="item-image">
-                    <img src="${DEFAULT_IMAGE}" alt="${item.name}">
+                    <img src="${item.image || DEFAULT_IMAGE}" alt="${item.name}" 
+                         onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}';">
                 </div>
                 <div class="item-details">
                     <div class="item-name">${item.name}</div>

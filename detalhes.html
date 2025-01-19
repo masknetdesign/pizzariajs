@@ -15,84 +15,80 @@
 
     <div class="container">
         <div class="product-details">
-            <div class="product-image">
-                <img id="product-image" src="images/default.jpg" alt="Produto">
+            <div class="product-image-container">
+                <img class="product-image" src="images/default.jpg" alt="Produto">
             </div>
             
             <div class="product-info">
-                <h1 id="product-name">Nome do Produto</h1>
-                <p id="product-description" class="description">Descrição do produto</p>
-
+                <h1 class="product-title">Nome do Produto</h1>
+                <p class="product-description">Descrição do produto</p>
+                
                 <!-- Opções específicas para pizzas -->
-                <div class="pizza-options">
-                    <div class="options-container">
-                        <div class="option-group">
-                            <h3>Escolha o Tamanho</h3>
-                            <div class="options">
-                                <label class="option">
-                                    <input type="radio" name="size" value="pequena" checked>
-                                    <div class="option-content">
-                                        <span class="name">Pequena</span>
-                                        <span class="details">25cm - 4 fatias</span>
-                                        <span class="price">R$ 25,00</span>
-                                    </div>
-                                </label>
-                                <label class="option">
-                                    <input type="radio" name="size" value="media">
-                                    <div class="option-content">
-                                        <span class="name">Média</span>
-                                        <span class="details">35cm - 6 fatias</span>
-                                        <span class="price">R$ 35,00</span>
-                                    </div>
-                                </label>
-                                <label class="option">
-                                    <input type="radio" name="size" value="grande">
-                                    <div class="option-content">
-                                        <span class="name">Grande</span>
-                                        <span class="details">45cm - 8 fatias</span>
-                                        <span class="price">R$ 45,00</span>
-                                    </div>
-                                </label>
-                            </div>
+                <div class="pizza-options" style="display: none;">
+                    <div class="options-group">
+                        <h3>Escolha o Tamanho</h3>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="size" value="pequena" checked>
+                                <div class="option-content">
+                                    <span class="name">Pequena</span>
+                                    <span class="details">25cm - 4 fatias</span>
+                                    <span class="price">R$ 25,00</span>
+                                </div>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="size" value="media">
+                                <div class="option-content">
+                                    <span class="name">Média</span>
+                                    <span class="details">35cm - 6 fatias</span>
+                                    <span class="price">R$ 35,00</span>
+                                </div>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="size" value="grande">
+                                <div class="option-content">
+                                    <span class="name">Grande</span>
+                                    <span class="details">45cm - 8 fatias</span>
+                                    <span class="price">R$ 45,00</span>
+                                </div>
+                            </label>
                         </div>
+                    </div>
 
-                        <div class="option-group">
-                            <h3>Escolha a Borda</h3>
-                            <div class="options">
-                                <label class="option">
-                                    <input type="radio" name="border" value="tradicional" checked>
-                                    <div class="option-content">
-                                        <span class="name">Tradicional</span>
-                                        <span class="price">Grátis</span>
-                                    </div>
-                                </label>
-                                <label class="option">
-                                    <input type="radio" name="border" value="catupiry">
-                                    <div class="option-content">
-                                        <span class="name">Catupiry</span>
-                                        <span class="price">+ R$ 5,00</span>
-                                    </div>
-                                </label>
-                                <label class="option">
-                                    <input type="radio" name="border" value="cheddar">
-                                    <div class="option-content">
-                                        <span class="name">Cheddar</span>
-                                        <span class="price">+ R$ 5,00</span>
-                                    </div>
-                                </label>
-                            </div>
+                    <div class="options-group">
+                        <h3>Escolha a Borda</h3>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="border" value="tradicional" checked>
+                                <div class="option-content">
+                                    <span class="name">Tradicional</span>
+                                    <span class="price">Grátis</span>
+                                </div>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="border" value="catupiry">
+                                <div class="option-content">
+                                    <span class="name">Catupiry</span>
+                                    <span class="price">+ R$ 5,00</span>
+                                </div>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="border" value="cheddar">
+                                <div class="option-content">
+                                    <span class="name">Cheddar</span>
+                                    <span class="price">+ R$ 5,00</span>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- Opções para bebidas e sobremesas -->
-                <div class="simple-options" style="display: none;">
-                    <div class="simple-price">
-                        <h3>Preço</h3>
-                        <span id="simple-price" class="price">R$ 0,00</span>
-                    </div>
+                <!-- Preço para produtos não-pizza -->
+                <div class="simple-price" style="display: none;">
+                    <div class="product-price">R$ 0,00</div>
                 </div>
 
+                <!-- Quantidade -->
                 <div class="quantity-group">
                     <h3>Quantidade</h3>
                     <div class="quantity-controls">
@@ -106,20 +102,21 @@
                     </div>
                 </div>
 
+                <!-- Total -->
                 <div class="total">
                     <span class="total-label">Total</span>
-                    <span id="total-price" class="total-price">R$ 0,00</span>
+                    <span class="total-price">R$ 0,00</span>
                 </div>
 
                 <div class="actions">
-                    <button id="add-to-cart" class="btn-primary">
+                    <button class="add-to-cart-btn btn-primary">
                         <i class="fas fa-shopping-cart"></i>
                         Adicionar ao Carrinho
                     </button>
-                    <button onclick="window.location.href='cardapio.html'" class="btn-secondary">
+                    <a href="cardapio.html" class="btn-secondary">
                         <i class="fas fa-arrow-left"></i>
                         Voltar ao Cardápio
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

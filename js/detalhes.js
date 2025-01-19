@@ -1,83 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initializeProductDetails();
+    loadProductDetails();
+    setupQuantityControls();
 });
 
-function initializeProductDetails() {
-    const productId = getProductIdFromUrl();
-    if (!productId) {
-        redirectToMenu();
-        return;
-    }
+const DEFAULT_IMAGE = 'images/default.jpg';
 
-    const product = loadProductData(productId);
-    if (!product) {
-        redirectToMenu();
-        return;
-    }
+// Configuração de preços
+const SIZES = {
+    'pequena': { price: 25.00, size: '25cm', slices: 4 },
+    'media': { price: 35.00, size: '35cm', slices: 6 },
+    'grande': { price: 45.00, size: '45cm', slices: 8 }
+};
 
-    displayProductDetails(product);
-    setupEventListeners(product);
-    updateTotal();
+const BORDERS = {
+    'tradicional': { price: 0, name: 'Tradicional' },
+    'catupiry': { price: 5.00, name: 'Catupiry' },
+    'cheddar': { price: 5.00, name: 'Cheddar' }
+};
+
+// Função para formatar preço
+function formatPrice(price) {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(price);
 }
 
-function getProductIdFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    return parseInt(params.get('id'));
-}
-
-function loadProductData(productId) {
-    const pizzas = JSON.parse(localStorage.getItem('pizzas')) || [];
-    const beverages = JSON.parse(localStorage.getItem('beverages')) || [];
-    const desserts = JSON.parse(localStorage.getItem('desserts')) || [];
-    
-    return pizzas.find(p => p.id === productId) || 
-           beverages.find(b => b.id === productId) || 
-           desserts.find(d => d.id === productId);
-}
-
-function redirectToMenu() {
-    window.location.href = 'cardapio.html';
-}
-
-function displayProductDetails(product) {
-    document.getElementById('product-image').src = product.image || 'images/default.jpg';
-    document.getElementById('product-image').alt = product.name;
-    document.getElementById('product-name').textContent = product.name;
-    document.getElementById('product-description').textContent = product.description;
-
-    // Elementos específicos para pizzas
-    const pizzaOptions = document.querySelector('.pizza-options');
-    const simpleOptions = document.querySelector('.simple-options');
-
-    if (product.type === 'pizza') {
-        pizzaOptions.style.display = 'block';
-        simpleOptions.style.display = 'none';
-    } else {
-        pizzaOptions.style.display = 'none';
-        simpleOptions.style.display = 'block';
-        
-        // Atualizar preço simples
-        document.getElementById('simple-price').textContent = `R$ ${product.price.toFixed(2)}`;
-    }
-}
-
-function setupEventListeners(product) {
-    if (product.type === 'pizza') {
-        // Eventos para opções de tamanho e borda
-        document.querySelectorAll('input[name="size"], input[name="border"]').forEach(input => {
-            input.addEventListener('change', updateTotal);
-        });
-    }
-
-    // Eventos para controles de quantidade
-    setupQuantityControls();
-
-    // Evento para adicionar ao carrinho
-    document.getElementById('add-to-cart').addEventListener('click', () => {
-        addToCart(product);
-    });
-}
-
+// Configurar controles de quantidade
 function setupQuantityControls() {
     const quantityInput = document.getElementById('quantity');
     const minusBtn = document.querySelector('.quantity-btn.minus');
@@ -106,125 +55,147 @@ function setupQuantityControls() {
     });
 }
 
-function getSelectedOptions() {
-    const product = loadProductData(getProductIdFromUrl());
+// Função para atualizar o total
+function updateTotal() {
+    const product = window.currentProduct;
+    if (!product) return;
 
-    if (product.type === 'pizza') {
-        const sizes = {
-            'pequena': { price: 25.00, size: '25cm', slices: 4 },
-            'media': { price: 35.00, size: '35cm', slices: 6 },
-            'grande': { price: 45.00, size: '45cm', slices: 8 }
-        };
+    const quantity = parseInt(document.getElementById('quantity').value);
+    let total = 0;
 
-        const borders = {
-            'tradicional': { price: 0, name: 'Tradicional' },
-            'catupiry': { price: 5.00, name: 'Catupiry' },
-            'cheddar': { price: 5.00, name: 'Cheddar' }
-        };
-
+    if (product.category === 'pizza') {
         const selectedSize = document.querySelector('input[name="size"]:checked').value;
         const selectedBorder = document.querySelector('input[name="border"]:checked').value;
-        const quantity = parseInt(document.getElementById('quantity').value);
-
-        return {
-            size: sizes[selectedSize],
-            border: borders[selectedBorder],
-            quantity: quantity
-        };
+        total = (SIZES[selectedSize].price + BORDERS[selectedBorder].price) * quantity;
     } else {
-        return {
-            quantity: parseInt(document.getElementById('quantity').value),
-            price: product.price
-        };
+        total = product.price * quantity;
     }
+
+    document.querySelector('.total-price').textContent = formatPrice(total);
 }
 
-function updateTotal() {
-    const product = loadProductData(getProductIdFromUrl());
-    const options = getSelectedOptions();
-    let total;
+// Função para adicionar ao carrinho
+function addToCart() {
+    const product = window.currentProduct;
+    if (!product) return;
 
-    if (product.type === 'pizza') {
-        total = (options.size.price + options.border.price) * options.quantity;
-    } else {
-        total = options.price * options.quantity;
+    const quantity = parseInt(document.getElementById('quantity').value);
+    let cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        description: product.description,
+        quantity: quantity
+    };
+
+    if (product.category === 'pizza') {
+        const selectedSize = document.querySelector('input[name="size"]:checked').value;
+        const selectedBorder = document.querySelector('input[name="border"]:checked').value;
+        
+        cartItem = {
+            ...cartItem,
+            size: SIZES[selectedSize].size,
+            slices: SIZES[selectedSize].slices,
+            border: BORDERS[selectedBorder].name,
+            price: SIZES[selectedSize].price + BORDERS[selectedBorder].price
+        };
     }
 
-    document.getElementById('total-price').textContent = `R$ ${total.toFixed(2)}`;
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Feedback visual
+    Swal.fire({
+        title: 'Produto Adicionado!',
+        text: 'O item foi adicionado ao seu carrinho',
+        icon: 'success',
+        confirmButtonText: 'Continuar Comprando',
+        showCancelButton: true,
+        cancelButtonText: 'Ir para o Carrinho',
+        confirmButtonColor: '#c41230',
+        cancelButtonColor: '#333'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'cardapio.html';
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            window.location.href = 'carrinho.html';
+        }
+    });
 }
 
-function addToCart(product) {
-    const options = getSelectedOptions();
-    let cartItem;
-
-    if (product.type === 'pizza') {
-        const total = (options.size.price + options.border.price) * options.quantity;
-        cartItem = {
-            id: Date.now(),
-            productId: product.id,
-            type: 'pizza',
-            name: product.name,
-            size: options.size.size,
-            slices: options.size.slices,
-            border: options.border.name,
-            quantity: options.quantity,
-            price: total / options.quantity,
-            total: total,
-            image: product.image || 'images/pizza-default.jpg'
-        };
-    } else {
-        const total = options.price * options.quantity;
-        cartItem = {
-            id: Date.now(),
-            productId: product.id,
-            type: product.type,
-            name: product.name,
-            quantity: options.quantity,
-            price: options.price,
-            total: total,
-            image: product.image || 'images/default.jpg'
-        };
-    }
-
+// Função para carregar detalhes do produto
+async function loadProductDetails() {
     try {
-        // Adicionar ao carrinho
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(cartItem);
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Atualizar contador do header
-        const headers = document.getElementsByTagName('app-header');
-        if (headers.length > 0) {
-            const header = headers[0];
-            if (typeof header.updateCartCount === 'function') {
-                header.updateCartCount();
-            }
+        // Pegar ID do produto da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        
+        if (!productId) {
+            throw new Error('ID do produto não especificado');
         }
 
-        // Mostrar mensagem de sucesso
-        Swal.fire({
-            title: product.type === 'pizza' ? 'Pizza Adicionada!' : 'Item Adicionado!',
-            text: `${product.name} foi adicionado(a) ao seu carrinho`,
-            icon: 'success',
-            showCancelButton: true,
-            confirmButtonText: 'Continuar Comprando',
-            cancelButtonText: 'Ir para o Carrinho',
-            confirmButtonColor: '#c41230',
-            cancelButtonColor: '#333'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'cardapio.html';
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                window.location.href = 'carrinho.html';
-            }
-        });
+        // Buscar detalhes do produto
+        const response = await fetch(`php/get_product.php?id=${productId}`);
+        
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (!data.success) {
+            throw new Error(data.message || 'Erro ao carregar produto');
+        }
+
+        const product = data.product;
+        window.currentProduct = product;
+        
+        // Atualizar interface
+        document.querySelector('.product-image').src = product.image || DEFAULT_IMAGE;
+        document.querySelector('.product-image').alt = product.name;
+        document.querySelector('.product-title').textContent = product.name;
+        document.querySelector('.product-description').textContent = product.description;
+
+        // Mostrar opções específicas baseado na categoria
+        const pizzaOptions = document.querySelector('.pizza-options');
+        const simplePrice = document.querySelector('.simple-price');
+
+        if (product.category === 'pizza') {
+            pizzaOptions.style.display = 'block';
+            simplePrice.style.display = 'none';
+            
+            // Configurar listeners para opções de pizza
+            document.querySelectorAll('input[name="size"], input[name="border"]').forEach(input => {
+                input.addEventListener('change', updateTotal);
+            });
+        } else {
+            pizzaOptions.style.display = 'none';
+            simplePrice.style.display = 'block';
+            document.querySelector('.product-price').textContent = formatPrice(product.price);
+        }
+        
+        // Configurar botão de adicionar ao carrinho
+        const addButton = document.querySelector('.add-to-cart-btn');
+        if (addButton) {
+            addButton.onclick = addToCart;
+        }
+
+        // Calcular total inicial
+        updateTotal();
+
     } catch (error) {
-        console.error('Erro ao adicionar ao carrinho:', error);
-        Swal.fire({
-            title: 'Erro',
-            text: 'Ocorreu um erro ao adicionar o item ao carrinho',
-            icon: 'error',
-            confirmButtonColor: '#c41230'
-        });
+        console.error('Erro ao carregar detalhes:', error);
+        document.querySelector('.product-details').innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Erro ao carregar detalhes do produto: ${error.message}</p>
+                <a href="cardapio.html" class="btn-primary">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar ao Cardápio
+                </a>
+            </div>
+        `;
     }
 }

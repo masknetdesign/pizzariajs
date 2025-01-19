@@ -50,7 +50,6 @@
 .item-name {
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--secondary-color);
 }
 
 .item-description {
@@ -99,9 +98,9 @@
 }
 
 .remove-btn {
+    border: none;
     background: #ff4444;
     color: white;
-    border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
@@ -122,20 +121,18 @@
 }
 
 .cart-summary {
+    margin-top: 2rem;
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-top: 2rem;
 }
 
 .summary-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 1rem;
     font-size: 1.1rem;
-    padding: 0.5rem 0;
 }
 
 .summary-item.total {
@@ -149,11 +146,8 @@
 
 .cart-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-    padding: 0 1rem;
+    gap: 1rem;
+    margin-top: 2rem;
 }
 
 .checkout-btn {
@@ -163,17 +157,14 @@
     border: none;
     padding: 1rem 2rem;
     border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
-    display: inline-flex;
+    transition: all 0.2s;
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
+    font-size: 1.1rem;
     text-decoration: none;
-    max-width: 250px;
-    margin: 0 auto;
 }
 
 .checkout-btn:hover {
@@ -181,23 +172,17 @@
 }
 
 .continue-shopping-btn {
-    flex: 1;
     background: transparent;
     color: var(--secondary-color);
     text-decoration: none;
     padding: 1rem 2rem;
     border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
-    display: inline-flex;
+    transition: all 0.2s;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    border: 1px solid #ddd;
-    max-width: 250px;
-    margin: 0 auto;
+    gap: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .continue-shopping-btn:hover {
@@ -207,32 +192,22 @@
 .empty-cart {
     text-align: center;
     padding: 3rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .empty-cart i {
     font-size: 4rem;
-    color: #999;
+    color: #ccc;
     margin-bottom: 1rem;
 }
 
 .empty-cart p {
     color: #666;
-    font-size: 1.2rem;
     margin-bottom: 2rem;
 }
 
 @media (max-width: 768px) {
     .cart-container {
-        margin: 80px auto 1rem;
-        padding: 0 15px;
-    }
-
-    .cart-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        padding: 1rem;
     }
 
     .cart-item {
@@ -258,31 +233,17 @@
     }
 
     .cart-summary {
-        padding: 1.5rem;
-    }
-
-    .summary-item {
-        font-size: 1rem;
-    }
-
-    .summary-item.total {
-        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
     }
 
     .cart-buttons {
         flex-direction: column;
-        align-items: center;
-        padding: 0;
-        gap: 1rem;
-        margin-top: 2rem;
     }
 
     .checkout-btn,
     .continue-shopping-btn {
-        max-width: none;
         width: 100%;
         justify-content: center;
-        padding: 1rem;
-        margin: 0;
     }
 }
